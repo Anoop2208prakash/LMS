@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import '../assets/scss/navbar.scss'
+import "../assets/scss/navbar.scss";
 
 type User = {
   id: number;
   username: string;
   email: string;
+  role?: string; // ✅ Added role field
 };
 
 interface NavbarProps {
@@ -29,7 +30,7 @@ export default function Navbar({ user }: NavbarProps) {
     }
   };
 
-  // Close dropdown on outside click
+  // ✅ Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -70,6 +71,10 @@ export default function Navbar({ user }: NavbarProps) {
               <div className="profile-dropdown">
                 <p className="profile-username">{user.username}</p>
                 <p className="profile-email">{user.email}</p>
+                {user.role && (
+                  <p className="profile-role">Role: {user.role}</p>
+                )}
+                <hr className="dropdown-separator" />
                 <button className="logout-btn" onClick={handleLogout}>
                   Logout
                 </button>

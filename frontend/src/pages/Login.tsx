@@ -41,10 +41,17 @@ export default function Login() {
     if (usernameError || passwordError) return;
 
     try {
-      const res = await api.post<{ token: string }>('/auth/login', { username, password });
-      const { token } = res.data;
+      // ✅ Expect token + role from backend
+      const res = await api.post<{ token: string; role: string }>('/auth/login', { username, password });
+      const { token, role } = res.data;
+
+      // ✅ Store token + role
       localStorage.setItem('token', token);
+      localStorage.setItem('role', role);
+
       toast.success('Login successful');
+
+      // ✅ Go to dashboard
       nav('/dashboard');
     } catch (error: unknown) {
       const err = error as AxiosError<{ message: string }>;

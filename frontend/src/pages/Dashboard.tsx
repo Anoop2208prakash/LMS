@@ -10,8 +10,9 @@ import "../assets/scss/dashboard.scss";
 type User = {
   id: number;
   username: string;
-  email: string;
-  created_at: string;
+  email?: string;
+  role: "admin" | "superadmin" | "user";
+  created_at?: string;
 };
 
 export default function Dashboard() {
@@ -32,6 +33,8 @@ export default function Dashboard() {
     })();
   }, [nav]);
 
+  if (!user) return <p>Loading dashboard...</p>;
+
   return (
     <div className="dashboard-layout">
       {/* Top Navbar */}
@@ -42,6 +45,12 @@ export default function Dashboard() {
 
       {/* Main Content Area */}
       <main className="dashboard-main">
+        <h1>Welcome, {user.username}</h1>
+        <p>
+          Your role: <strong>{user.role}</strong>
+        </p>
+
+        {/* ✅ Attendance (Visible to everyone) */}
         <div className="attendance-containers">
           <div className="attendance-card present">
             <div className="card-content">
@@ -54,15 +63,15 @@ export default function Dashboard() {
                 <path
                   className="bg"
                   d="M18 2.0845
-             a 15.9155 15.9155 0 0 1 0 31.831
-             a 15.9155 15.9155 0 0 1 0 -31.831"
+                     a 15.9155 15.9155 0 0 1 0 31.831
+                     a 15.9155 15.9155 0 0 1 0 -31.831"
                 />
                 <path
                   className="progress"
                   strokeDasharray="67, 100"
                   d="M18 2.0845
-             a 15.9155 15.9155 0 0 1 0 31.831
-             a 15.9155 15.9155 0 0 1 0 -31.831"
+                     a 15.9155 15.9155 0 0 1 0 31.831
+                     a 15.9155 15.9155 0 0 1 0 -31.831"
                 />
               </svg>
               <span className="percent">67%</span>
@@ -113,6 +122,40 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
+
+        {/* ✅ Role-specific extra features */}
+        {user.role === "admin" && (
+          <div className="admin-tools">
+            <h2>Admin Tools</h2>
+            <ul>
+              <li>Manage users</li>
+              <li>Generate reports</li>
+              <li>System configuration</li>
+            </ul>
+          </div>
+        )}
+
+        {user.role === "superadmin" && (
+          <div className="superadmin-tools">
+            <h2>Super Admin Tools</h2>
+            <ul>
+              <li>Manage admins</li>
+              <li>Global system settings</li>
+              <li>Access full logs</li>
+            </ul>
+          </div>
+        )}
+
+        {user.role === "user" && (
+          <div className="user-tools">
+            <h2>User Features</h2>
+            <ul>
+              <li>View personal attendance</li>
+              <li>Submit leave requests</li>
+              <li>Check notifications</li>
+            </ul>
+          </div>
+        )}
       </main>
     </div>
   );
