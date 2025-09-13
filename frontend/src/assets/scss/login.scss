@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
+  width: 100%;
+
+  h1 {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #222;
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    color: #666;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  form {
+    text-align: left;
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+      font-weight: 550;
+      color: #333;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 0.3rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+
+      &:focus {
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+      }
+
+      &.error {
+        border-color: #e74c3c;
+        box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.15);
+      }
+    }
+
+    // ✅ Password wrapper with eye toggle
+    .password-wrapper {
+      position: relative;
+
+      .password-toggle {
+        position: absolute;
+        right: 12px;
+        top: 37px;
+        cursor: pointer;
+        color: #555;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+
+    // ✅ Error message aligned left
+    .error-message {
+      color: #e74c3c;
+      font-weight: 600;
+      font-size: 0.8rem;
+      margin: 0 0 0.8rem 2px;
+      display: block;
+      text-align: left;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      background: #4a90e2;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: #357abd;
+      }
+    }
+
+    div {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+
+      a {
+        color: #4a90e2;
+        font-weight: 500;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

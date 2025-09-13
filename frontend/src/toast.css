@@ -1,0 +1,14 @@
+/* react-toastify default classes; we override colors to match your request */
+.Toastify__toast--success {
+  background: #e9f9ee !important;  /* very light green */
+  color: #0f5132 !important;       /* dark green text */
+  border-left: 6px solid #198754 !important;
+}
+
+.Toastify__toast--error {
+  background: #fff0f0 !important;  /* very light red/pink */
+  color: #842029 !important;       /* dark red text */
+  border-left: 6px solid #dc3545 !important;
+}
+
+/* keep right-side / top-right position - configured via ToastContainer prop */
