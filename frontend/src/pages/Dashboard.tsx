@@ -11,7 +11,7 @@ type User = {
   id: number;
   username: string;
   email?: string;
-  role: "admin" | "superadmin" | "user";
+  role: "admin" | "super_admin" | "user";
   created_at?: string;
 };
 
@@ -135,8 +135,8 @@ export default function Dashboard() {
           </div>
         )}
 
-        {user.role === "superadmin" && (
-          <div className="superadmin-tools">
+        {user.role === "super_admin" && (
+          <div className="super_admin-tools">
             <h2>Super Admin Tools</h2>
             <ul>
               <li>Manage admins</li>
