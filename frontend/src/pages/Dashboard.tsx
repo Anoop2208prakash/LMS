@@ -47,82 +47,11 @@ export default function Dashboard() {
       <main className="dashboard-main">
         <h1>Welcome, {user.username}</h1>
         <p>
-          Your role: <strong>{user.role}</strong>
+          <strong>User ID:</strong> {user.id}
         </p>
-
-        {/* ✅ Attendance (Visible to everyone) */}
-        <div className="attendance-containers">
-          <div className="attendance-card present">
-            <div className="card-content">
-              <h2>20</h2>
-              <p>Present</p>
-              <span>of 30 total</span>
-            </div>
-            <div className="progress-circle">
-              <svg viewBox="0 0 36 36">
-                <path
-                  className="bg"
-                  d="M18 2.0845
-                     a 15.9155 15.9155 0 0 1 0 31.831
-                     a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-                <path
-                  className="progress"
-                  strokeDasharray="67, 100"
-                  d="M18 2.0845
-                     a 15.9155 15.9155 0 0 1 0 31.831
-                     a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-              </svg>
-              <span className="percent">67%</span>
-            </div>
-          </div>
-
-          <div className="attendance-card absent">
-            <div className="card-content">
-              <h2>5</h2>
-              <p>Absent</p>
-              <span>of 30 total</span>
-            </div>
-            <div className="progress-circle">
-              <svg viewBox="0 0 36 36">
-                <path
-                  className="bg"
-                  d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-                <path
-                  className="progress"
-                  strokeDasharray="17, 100"
-                  d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-              </svg>
-              <span className="percent">17%</span>
-            </div>
-          </div>
-
-          <div className="attendance-card leave">
-            <div className="card-content">
-              <h2>2</h2>
-              <p>Leave</p>
-              <span>of 30 total</span>
-            </div>
-            <div className="progress-circle">
-              <svg viewBox="0 0 36 36">
-                <path
-                  className="bg"
-                  d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-                <path
-                  className="progress"
-                  strokeDasharray="6, 100"
-                  d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-              </svg>
-              <span className="percent">6%</span>
-            </div>
-          </div>
-        </div>
-
+        <p>
+          <strong>Your role:</strong> {user.role}
+        </p>
         {/* ✅ Role-specific extra features */}
         {user.role === "admin" && (
           <div className="admin-tools">

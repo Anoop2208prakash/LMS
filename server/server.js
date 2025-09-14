@@ -33,6 +33,18 @@ let db;
   }
 })();
 
+// ✅ Helper to generate unique 6-digit IDs
+async function generateUserId() {
+  let id;
+  let exists = true;
+  while (exists) {
+    id = Math.floor(100000 + Math.random() * 900000); // 6-digit number
+    const [rows] = await db.query("SELECT id FROM users WHERE id = ?", [id]);
+    exists = rows.length > 0;
+  }
+  return id;
+}
+
 // ✅ Register route
 app.post("/api/auth/register", async (req, res) => {
   const { username, email, password } = req.body;
@@ -51,13 +63,16 @@ app.post("/api/auth/register", async (req, res) => {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Generate unique 6-digit ID
+    const userId = await generateUserId();
+
     // Insert user with default role "user"
     await db.query(
-      "INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)",
-      [username, email, hashedPassword, "user"]
+      "INSERT INTO users (id, username, email, password, role) VALUES (?, ?, ?, ?, ?)",
+      [userId, username, email, hashedPassword, "user"]
     );
 
-    res.json({ message: "User registered successfully" });
+    res.json({ message: "User registered successfully", id: userId });
   } catch (err) {
     console.error("❌ Register error:", err.message);
     res.status(500).json({ message: "Server error" });
@@ -95,7 +110,7 @@ app.post("/api/auth/login", async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.json({ token, role });
+    res.json({ token, role, id: user.id });
   } catch (err) {
     console.error("❌ Login error:", err.message);
     res.status(500).json({ message: "Server error" });

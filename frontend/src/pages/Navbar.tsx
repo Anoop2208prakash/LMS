@@ -7,7 +7,7 @@ type User = {
   id: number;
   username: string;
   email: string;
-  role?: string; // ✅ Added role field
+  role?: string;
 };
 
 interface NavbarProps {
@@ -71,6 +71,7 @@ export default function Navbar({ user }: NavbarProps) {
               <div className="profile-dropdown">
                 <p className="profile-username">{user.username}</p>
                 <p className="profile-email">{user.email}</p>
+                <p className="profile-id">ID: {user.id}</p> {/* ✅ Show ID */}
                 {user.role && (
                   <p className="profile-role">Role: {user.role}</p>
                 )}

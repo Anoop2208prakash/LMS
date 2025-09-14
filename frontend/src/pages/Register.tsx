@@ -52,7 +52,7 @@ export default function Register() {
     try {
       await api.post("/auth/register", { username, email, password });
       toast.success("Registration successful! Please log in.");
-      nav("/login");
+      nav("/login"); // ✅ directly redirect to login
     } catch (error: unknown) {
       const err = error as AxiosError<{ message: string }>;
       const msg = err.response?.data?.message || "Registration failed";
